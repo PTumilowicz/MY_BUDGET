@@ -2,3 +2,5 @@ bin/
 obj/
 *.txt
 MY_BUDGET*
+*.mm
+*.uxf
