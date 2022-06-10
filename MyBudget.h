@@ -1,5 +1,9 @@
+#ifndef MYBUDGET_H
+#define MYBUDGET_H
+
 #include <iostream>
 
+#include "AuxilaryMethods.h"
 #include "UserManager.h"
 #include "BudgetManager.h"
 
@@ -13,8 +17,15 @@ class MyBudget {
 
     void showLogMenu();
 
+    void registerUser();
+    void logInUser();
+
 public:
-    MyBudget(string userFileName, string incomeFileName, string expenseFileName) {}
+    MyBudget(string userFileName, string incomeFileName, string expenseFileName) : userManager(userFileName){
+
+    }
 
     void chooseOptionInLogMenu();
 };
+
+#endif

@@ -18,3 +18,9 @@ char AuxilaryMethods::getCharacter() {
     }
     return givenCharacter;
 }
+
+string AuxilaryMethods::readLine() {
+    string input = "";
+    getline(cin, input);
+    return input;
+}
