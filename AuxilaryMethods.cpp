@@ -1,26 +1,42 @@
 #include "AuxilaryMethods.h"
 
 char AuxilaryMethods::getCharacter() {
-    string givenString = "";
+    string input = "";
     char givenCharacter = (0);
+
+    cout << "Your choice: ";
 
     cin.sync();
 
     while(true) {
-        getline(cin, givenString);
+        getline(cin, input);
 
-        if (givenString.length() == 1) {
-            givenCharacter = givenString[0];
+        if (input.length() == 1) {
+            givenCharacter = input[0];
             break;
         }
         cout << "This is not a single character. Try again." << endl;
         system("pause");
     }
+
     return givenCharacter;
 }
 
 string AuxilaryMethods::readLine() {
     string input = "";
-    getline(cin, input);
+
+    cin.sync();
+
+    while(true) {
+        getline(cin, input);
+
+        if (input.length() != 0) {
+            break;
+        }
+
+        cout << "You have entered empty string. Try again." << endl;
+        system("pause");
+    }
+
     return input;
 }

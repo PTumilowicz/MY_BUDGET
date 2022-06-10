@@ -5,13 +5,13 @@ void MyBudget::chooseOptionInLogMenu() {
 
     while(true) {
         if (userManager.getLoggedUserId() == 0) {
-            showLogMenu();
+            showHomeMenu();
 
             choice = AuxilaryMethods::getCharacter();
 
             switch (choice) {
             case '1':
-                logInUser();
+                loginUser();
                 break;
             case '2':
                 registerUser();
@@ -25,25 +25,81 @@ void MyBudget::chooseOptionInLogMenu() {
                 system("pause");
                 break;
             }
+        } else {
+            showMainMenu();
+
+            choice = AuxilaryMethods::getCharacter();
+
+            switch (choice) {
+            case '1':
+
+                break;
+            case '2':
+
+                break;
+            case '3':
+
+                break;
+            case '4':
+
+                break;
+            case '5':
+
+                break;
+            case '6':
+                changePassword();
+                break;
+            case '8':
+                logoutUser();
+                break;
+            default:
+                cout << "\nCharacter not used. Try again.\n" << endl;
+                system("pause");
+                break;
+            }
         }
     }
 }
 
-void MyBudget::showLogMenu() {
+void MyBudget::showHomeMenu() {
     system("cls");
 
-    cout << ">>>> Welcome to MyBudget <<<<" << endl;
-    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-    cout << "Choose one of the following:" << endl;
-    cout << "1. Log In" << endl;
+    cout << ">>>> MyBudget - Home Menu <<<<\n" << endl;
+    cout << "Choose one of the following:\n" << endl;
+    cout << "1. Login" << endl;
     cout << "2. Register" << endl;
-    cout << "9. Close app" << endl;
+    cout << "9. Close app\n" << endl;
 }
 
-void MyBudget::logInUser() {
-    userManager.logInUser();
+void MyBudget::showMainMenu() {
+    system("cls");
+
+    cout << ">>>> MyBudget - Main Menu <<<<\n" << endl;
+    cout << "Choose one of the following:\n" << endl;
+    cout << "1. Add income" << endl;
+    cout << "2. Add expense" << endl;
+    cout << "3. Current month cash balance" << endl;
+    cout << "4. Last month cash balance" << endl;
+    cout << "5. Chosen period cash balance" << endl;
+    cout << "-------------------------------" << endl;
+    cout << "6. Change password" << endl;
+    cout << "8. Logout\n" << endl;
+}
+
+void MyBudget::loginUser() {
+    userManager.loginUser();
+}
+
+void MyBudget::logoutUser() {
+    userManager.logoutUser();
 }
 
 void MyBudget::registerUser() {
     userManager.registerUser();
 }
+
+void MyBudget::changePassword() {
+    userManager.changePassword();
+}
+
+

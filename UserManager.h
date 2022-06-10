@@ -13,6 +13,7 @@ class UserManager {
     UserFile userFile;
 
     User enterNewUserData();
+    bool checkIfLoginExist(string inputLogin);
 
 public:
     UserManager(string userFileName) : userFile(userFileName) {
@@ -24,5 +25,7 @@ public:
     void setLoggedUserId(int newId);
 
     void registerUser();
-    void logInUser();
+    void loginUser();
+    void logoutUser();
+    void changePassword();
 };

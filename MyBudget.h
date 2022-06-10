@@ -15,10 +15,14 @@ class MyBudget {
     const string INCOME_FILE_NAME;
     const string EXPENSE_FILE_NAME;
 
-    void showLogMenu();
+    void showHomeMenu();
 
     void registerUser();
-    void logInUser();
+    void loginUser();
+    void logoutUser();
+    void changePassword();
+
+    void showMainMenu();
 
 public:
     MyBudget(string userFileName, string incomeFileName, string expenseFileName) : userManager(userFileName){
