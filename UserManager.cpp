@@ -137,7 +137,9 @@ void UserManager::changePassword() {
 
         if (users[userIndex].getUserPassword() == oldPassword) {
             cout << "Passwords match. Enter new password: ";
-            users[userIndex].setUserPassword(AuxilaryMethods::readLine());
+            newPassword = AuxilaryMethods::readLine();
+            users[userIndex].setUserPassword(newPassword);
+            userFile.changePasswordInXML(loggedUserId, newPassword);
             cout << "Password changed. You will be redirected to Main Menu." << endl;
             system("pause");
             break;

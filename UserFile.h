@@ -3,6 +3,7 @@
 
 #include "Markup.h"
 #include "User.h"
+#include "AuxilaryMethods.h"
 
 using namespace std;
 
@@ -16,5 +17,6 @@ public:
 
     vector <User> loadUsersFromFile();
     void addUser(User user);
+    void changePasswordInXML(int userId, string newPassword);
 
 };

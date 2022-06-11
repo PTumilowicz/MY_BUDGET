@@ -48,3 +48,25 @@ vector <User> UserFile::loadUsersFromFile() {
 
     return users;
 }
+
+void UserFile::changePasswordInXML(int userId, string newPassword) {
+
+    if (xml.Load(USER_FILE_NAME)) {
+        xml.FindElem();
+        xml.IntoElem();
+
+        while (xml.FindElem("User")) {
+            xml.IntoElem();
+            xml.FindElem("id");
+
+            if (xml.GetData() == AuxilaryMethods::convIntToStr(userId)) {
+                xml.FindElem("password");
+                xml.SetData(newPassword);
+                xml.Save(USER_FILE_NAME);
+                break;
+            }
+
+            xml.OutOfElem();
+        }
+    }
+}

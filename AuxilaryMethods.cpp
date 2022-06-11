@@ -40,3 +40,19 @@ string AuxilaryMethods::readLine() {
 
     return input;
 }
+
+string AuxilaryMethods::convIntToStr(int number) {
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+
+    return str;
+}
+
+int AuxilaryMethods::convStrToInt(string number) {
+    int intNumber = 0;
+    istringstream iss(number);
+    iss >> intNumber;
+
+    return intNumber;
+}
