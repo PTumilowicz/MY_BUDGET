@@ -24,8 +24,11 @@ class MyBudget {
 
     void showMainMenu();
 
+    void addIncome();
+
 public:
-    MyBudget(string userFileName, string incomeFileName, string expenseFileName) : userManager(userFileName){
+    MyBudget(string userFileName, string incomeFileName, string expenseFileName)
+    : userManager(userFileName), INCOME_FILE_NAME(incomeFileName), EXPENSE_FILE_NAME(expenseFileName) {
 
     }
 

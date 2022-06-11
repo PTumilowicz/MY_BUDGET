@@ -110,6 +110,10 @@ void UserManager::loginUser() {
     }
 }
 
+bool UserManager::ifUserLoggedIn() {
+    return loggedUserId > 0;
+}
+
 void UserManager::logoutUser() {
     loggedUserId = 0;
     cout << "\nYou will be logged out. See you again.\n" << endl;

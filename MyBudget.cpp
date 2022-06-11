@@ -32,7 +32,7 @@ void MyBudget::chooseOptionInLogMenu() {
 
             switch (choice) {
             case '1':
-
+                addIncome();
                 break;
             case '2':
 
@@ -88,10 +88,16 @@ void MyBudget::showMainMenu() {
 
 void MyBudget::loginUser() {
     userManager.loginUser();
+
+    if (userManager.ifUserLoggedIn()) {
+        budgetManager = new BudgetManager(INCOME_FILE_NAME, EXPENSE_FILE_NAME, userManager.getLoggedUserId());
+    }
 }
 
 void MyBudget::logoutUser() {
     userManager.logoutUser();
+    delete budgetManager;
+    budgetManager = NULL;
 }
 
 void MyBudget::registerUser() {
@@ -100,6 +106,10 @@ void MyBudget::registerUser() {
 
 void MyBudget::changePassword() {
     userManager.changePassword();
+}
+
+void MyBudget::addIncome() {
+    budgetManager->
 }
 
 
