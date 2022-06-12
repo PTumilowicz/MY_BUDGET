@@ -1,10 +1,12 @@
 #include <iostream>
 #include <vector>
 
+
 #include "Income.h"
 #include "Expense.h"
 #include "IncomeFile.h"
 #include "ExpenseFile.h"
+#include "AuxilaryMethods.h"
 
 using namespace std;
 
@@ -14,6 +16,9 @@ class BudgetManager {
     vector <Expense> expenses;
     IncomeFile incomeFile;
     ExpenseFile expenseFile;
+
+    Income addNewIncomeData();
+    bool checkDateFormat(string date);
 
 public:
     BudgetManager(string incomeFileName, string expenseFileName, int loggedUserId) :

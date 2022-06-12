@@ -32,8 +32,8 @@ void Income::setUserId(int newUserId) {
     }
 }
 
-void Income::setIncomeDate(int newIncomeDate) {
-    incomeDate = newIncomeDate;
+void Income::setIncomeDate(string newIncomeDate) {
+    //incomeDate = newIncomeDate;
 }
 
 void Income::setIncomeItem(string newIncomeItem) {

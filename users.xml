@@ -5,7 +5,7 @@
 <firstName>Pawel</firstName>
 <lastName>Tumilowicz</lastName>
 <login>Pu6</login>
-<password>321</password>
+<password>123</password>
 </User>
 <User>
 <id>2</id>
@@ -13,5 +13,12 @@
 <lastName>Tumilowicz</lastName>
 <login>Pu7</login>
 <password>123</password>
+</User>
+<User>
+<id>3</id>
+<firstName>Kuba</firstName>
+<lastName>Tumilowicz</lastName>
+<login>Qba</login>
+<password>mario</password>
 </User>
 </Users>

@@ -109,7 +109,7 @@ void MyBudget::changePassword() {
 }
 
 void MyBudget::addIncome() {
-    budgetManager->
+    budgetManager->addIncome();
 }
 
 

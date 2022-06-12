@@ -17,6 +17,9 @@ void UserManager::registerUser() {
     user = enterNewUserData();
     users.push_back(user);
     userFile.addUser(user);
+
+    cout << "\nAccount registered!\n" << endl;
+    system("pause");
 }
 
 User UserManager::enterNewUserData() {
@@ -33,7 +36,7 @@ User UserManager::enterNewUserData() {
 
     system("cls");
     cout << ">>>> MyBudget - Register new user <<<<\n" << endl;
-    cout << "Enter user data\n" << endl;
+    cout << "Enter user details\n" << endl;
     cout << "Enter first name: ";
     user.setUserFirstName(AuxilaryMethods::readLine());
     cout << "Enter last name: ";
@@ -51,9 +54,6 @@ User UserManager::enterNewUserData() {
 
     cout << "Enter password: ";
     user.setUserPassword(AuxilaryMethods::readLine());
-
-    cout << "\nAccount registered!\n" << endl;
-    system("pause");
 
     return user;
 }

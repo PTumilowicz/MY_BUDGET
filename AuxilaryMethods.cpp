@@ -56,3 +56,19 @@ int AuxilaryMethods::convStrToInt(string number) {
 
     return intNumber;
 }
+
+int AuxilaryMethods::currentDate() {
+    int year = 0, month = 0, day = 0;
+    int currentDate = 0;
+
+    time_t t = time(0);
+    tm* now = localtime(&t);
+
+    year = now->tm_year + 1900;
+    month = now->tm_mon + 1;
+    day = now->tm_mday;
+
+    currentDate = year * 10000 + month * 100 + day;
+
+    return currentDate;
+}

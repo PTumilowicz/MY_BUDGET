@@ -15,7 +15,7 @@ vector <Income> IncomeFile::loadIncomeFromFile() {
             xml.FindElem("userId");
             income.setUserId(atoi(MCD_2PCSZ(xml.GetData())));
             xml.FindElem("incomeDate");
-            income.setIncomeDate(atoi(MCD_2PCSZ(xml.GetData())));
+            income.setIncomeDate(xml.GetData());
             xml.FindElem("incomeItem");
             income.setIncomeItem(xml.GetData());
             xml.FindElem("incomeAmount");

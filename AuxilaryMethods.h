@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string>
 #include <algorithm>
+#include <ctime>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ public:
     static string readLine();
     static string convIntToStr(int number);
     static int convStrToInt(string number);
+    static int currentDate();
 };
 
 #endif

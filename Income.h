@@ -2,6 +2,8 @@
 #define INCOME_H
 
 #include <iostream>
+#include <regex>
+#include <string>
 
 using namespace std;
 
@@ -29,7 +31,7 @@ public:
 
     void setIncomeId(int newIncomeId);
     void setUserId(int newUserId);
-    void setIncomeDate(int newIncomeDate);
+    void setIncomeDate(string newIncomeDate);
     void setIncomeItem(string newIncomeItem);
     void setIncomeAmount(double newIncomeAmount);
 };
