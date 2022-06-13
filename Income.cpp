@@ -16,8 +16,8 @@ string Income::getIncomeItem() {
     return incomeItem;
 }
 
-double Income::getIncomeAmount() {
-    return incomeAmount;
+string Income::getIncomeAmount() {
+    return to_string(incomeAmount);
 }
 
 void Income::setIncomeId(int newIncomeId) {
@@ -32,14 +32,14 @@ void Income::setUserId(int newUserId) {
     }
 }
 
-void Income::setIncomeDate(string newIncomeDate) {
-    //incomeDate = newIncomeDate;
+void Income::setIncomeDate(int newIncomeDate) {
+   incomeDate = newIncomeDate;
 }
 
 void Income::setIncomeItem(string newIncomeItem) {
     incomeItem = newIncomeItem;
 }
 
-void Income::setIncomeAmount(double newIncomeAmount) {
-    incomeAmount = newIncomeAmount;
+void Income::setIncomeAmount(string newIncomeAmount) {
+    incomeAmount = stod(newIncomeAmount);
 }

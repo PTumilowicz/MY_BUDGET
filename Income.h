@@ -4,6 +4,9 @@
 #include <iostream>
 #include <regex>
 #include <string>
+#include <iomanip>
+
+#include "AuxilaryMethods.h"
 
 using namespace std;
 
@@ -27,13 +30,13 @@ public:
     int getUserId();
     int getIncomeDate();
     string getIncomeItem();
-    double getIncomeAmount();
+    string getIncomeAmount();
 
     void setIncomeId(int newIncomeId);
     void setUserId(int newUserId);
-    void setIncomeDate(string newIncomeDate);
+    void setIncomeDate(int newIncomeDate);
     void setIncomeItem(string newIncomeItem);
-    void setIncomeAmount(double newIncomeAmount);
+    void setIncomeAmount(string newIncomeAmount);
 };
 
 #endif

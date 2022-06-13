@@ -11,12 +11,13 @@ class IncomeFile {
     string const INCOME_FILE_NAME;
     CMarkup xml;
 
-
 public:
     IncomeFile(string incomeFileName) : INCOME_FILE_NAME(incomeFileName) {
+        lastIncomeId = 0;
     }
 
-    vector <Income> loadIncomeFromFile();
+    int getLastIncomeId();
+    vector <Income> loadIncomeFromFile(int loggedUserId);
 
     void addIncome(Income income);
 };
