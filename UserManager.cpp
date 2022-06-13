@@ -92,7 +92,7 @@ void UserManager::loginUser() {
             inputPassword = AuxilaryMethods::readLine();
             if (users[userIndex].getUserPassword() == inputPassword) {
                 loggedUserId = users[userIndex].getUserId();
-                cout << "Password correct. You will be redirected to Main Menu." << endl;
+                cout << "\nPassword correct. You will be redirected to Main Menu.\n" << endl;
                 system("pause");
                 break;
             }

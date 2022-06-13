@@ -16,28 +16,23 @@ class MyBudget {
     const string EXPENSE_FILE_NAME;
 
     void showHomeMenu();
+    void showMainMenu();
 
     void registerUser();
     void loginUser();
     void logoutUser();
     void changePassword();
 
-    void showMainMenu();
-
     void addIncome();
     void addExpense();
 
-    void showBalance(int startDate, int endDate);
-
-    int beginOfCurrentMonth();
-    int endOfCurrentMonth();
-    int beginOfLastMonth();
-    int endOfLastMonth();
+    void showCurrentMonthBalance();
+    void showLastMonthBalance();
+    void showSelectedPeriodBalance();
 
 public:
     MyBudget(string userFileName, string incomeFileName, string expenseFileName)
     : userManager(userFileName), INCOME_FILE_NAME(incomeFileName), EXPENSE_FILE_NAME(expenseFileName) {
-
     }
 
     void chooseOptionInLogMenu();

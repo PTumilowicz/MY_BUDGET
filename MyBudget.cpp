@@ -38,15 +38,13 @@ void MyBudget::chooseOptionInLogMenu() {
                 addExpense();
                 break;
             case '3':
-                showBalance(beginOfCurrentMonth(), endOfCurrentMonth());
+                showCurrentMonthBalance();
                 break;
             case '4':
-                //showBalance(beginOfLastMonth(), endOfLastMonth());
+                showLastMonthBalance();
                 break;
             case '5':
-                //startDate = selectStartDate();
-                //endDate = selectEndDate();
-                //showBalance(startDate, endDate);
+                showSelectedPeriodBalance();
                 break;
             case '6':
                 changePassword();
@@ -88,6 +86,10 @@ void MyBudget::showMainMenu() {
     cout << "8. Logout\n" << endl;
 }
 
+void MyBudget::registerUser() {
+    userManager.registerUser();
+}
+
 void MyBudget::loginUser() {
     userManager.loginUser();
 
@@ -102,10 +104,6 @@ void MyBudget::logoutUser() {
     budgetManager = NULL;
 }
 
-void MyBudget::registerUser() {
-    userManager.registerUser();
-}
-
 void MyBudget::changePassword() {
     userManager.changePassword();
 }
@@ -118,38 +116,16 @@ void MyBudget::addExpense() {
     budgetManager->addExpense();
 }
 
-void MyBudget::showBalance(int startDate, int endDate) {
-    budgetManager->showBalance(startDate, endDate);
+void MyBudget::showCurrentMonthBalance() {
+    budgetManager->showCurrentMonthBalance();
 }
 
-int MyBudget::beginOfCurrentMonth() {
-    int currentDate = AuxilaryMethods::currentDate();
-    int beginMonthDate = ((currentDate / 100) * 100) + 1;;
-
-    return beginMonthDate;
+void MyBudget::showLastMonthBalance() {
+    budgetManager->showLastMonthBalance();
 }
 
-int MyBudget::endOfCurrentMonth() {
-    int currentDate = AuxilaryMethods::currentDate();
-    int yearNumber = currentDate / 10000, monthNumber = 0;
-    int endMonthDay = 0;
-
-    monthNumber = (currentDate - (yearNumber * 10000)) / 100;
-
-    switch(monthNumber) {
-    case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-        return endMonthDay = ((currentDate / 100) * 100) + 31;
-        break;
-    case 4: case 6: case 9: case 11:
-        return endMonthDay = ((currentDate / 100) * 100) + 30;
-        break;
-    case 2:
-        if ((yearNumber % 4 == 0 && yearNumber % 100 != 0) || yearNumber % 400 == 0) {
-            return endMonthDay = ((currentDate / 100) * 100) + 29;
-        }
-
-        return endMonthDay = ((currentDate / 100) * 100) + 28;
-        break;
-    }
-    return endMonthDay;
+void MyBudget::showSelectedPeriodBalance() {
+    budgetManager->showSelectedPeriodBalance();
 }
+
+

@@ -21,9 +21,15 @@ class BudgetManager {
     Expense addNewExpenseData();
     bool checkDateFormat(string date);
     bool checkCashAmountFormat(string cashAmount);
-
     string convCashAmount(string cashAmount);
+
+    void showBalance(int startDate, int endDate);
     void showBalanceMenu(int startDate, int endDate);
+
+    int beginOfMonth(int date);
+    int endOfMonth(int date);
+    int beginOfLastMonth();
+    int endOfLastMonth();
 
 public:
     BudgetManager(string incomeFileName, string expenseFileName, int loggedUserId) :
@@ -35,5 +41,7 @@ public:
     void addIncome();
     void addExpense();
 
-    void showBalance(int startDate, int endDate);
+    void showCurrentMonthBalance();
+    void showLastMonthBalance();
+    void showSelectedPeriodBalance();
 };
