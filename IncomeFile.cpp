@@ -49,9 +49,12 @@ vector <Income> IncomeFile::loadIncomeFromFile(int loggedUserId) {
 
 void IncomeFile::addIncome(Income income) {
     int intDate = income.getIncomeDate();
-    string formatedDate = "", strDate = "";
+    double dblIncomeAmount = 0;
+    string formatedDate = "", strIncomeAmount = "";
 
     formatedDate = AuxilaryMethods::convIntDateToString(intDate);
+    dblIncomeAmount = income.getIncomeAmount();
+    strIncomeAmount = AuxilaryMethods::convDoubleToString(dblIncomeAmount);
 
     if (!xml.Load(INCOME_FILE_NAME)) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
@@ -67,7 +70,7 @@ void IncomeFile::addIncome(Income income) {
     xml.AddElem("userId", income.getUserId());
     xml.AddElem("incomeDate", formatedDate);
     xml.AddElem("incomeItem", income.getIncomeItem());
-    xml.AddElem("incomeAmount", income.getIncomeAmount());
+    xml.AddElem("incomeAmount", strIncomeAmount);
 
     xml.Save(INCOME_FILE_NAME);
 

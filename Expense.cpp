@@ -16,8 +16,8 @@ string Expense::getExpenseItem() {
     return expenseItem;
 }
 
-string Expense::getExpenseAmount() {
-    return to_string(expenseAmount);
+double Expense::getExpenseAmount() {
+    return expenseAmount;
 }
 
 void Expense::setExpenseId(int newExpenseId) {

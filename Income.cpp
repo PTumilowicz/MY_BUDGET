@@ -16,8 +16,8 @@ string Income::getIncomeItem() {
     return incomeItem;
 }
 
-string Income::getIncomeAmount() {
-    return to_string(incomeAmount);
+double Income::getIncomeAmount() {
+    return incomeAmount;
 }
 
 void Income::setIncomeId(int newIncomeId) {

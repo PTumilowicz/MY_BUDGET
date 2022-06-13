@@ -6,6 +6,7 @@
 #include <string>
 #include <algorithm>
 #include <ctime>
+#include <iomanip>
 
 using namespace std;
 
@@ -15,10 +16,10 @@ public:
     static string readLine();
     static string convIntToStr(int number);
     static int convStrToInt(string number);
+    static string convDoubleToString(double number);
     static int currentDate();
     static string convIntDateToString(int date);
     static int convStringDateToInt(string date);
-    static string convCashAmount(string cashAmount);
 };
 
 #endif

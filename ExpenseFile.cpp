@@ -49,9 +49,12 @@ vector <Expense> ExpenseFile::loadExpenseFromFile(int loggedUserId) {
 
 void ExpenseFile::addExpense(Expense expense) {
     int intDate = expense.getExpenseDate();
-    string formatedDate = "";
+    double dblExpenseAmount = 0;
+    string formatedDate = "", strExpenseAmount = "";
 
     formatedDate = AuxilaryMethods::convIntDateToString(intDate);
+    dblExpenseAmount = expense.getExpenseAmount();
+    strExpenseAmount = AuxilaryMethods::convDoubleToString(dblExpenseAmount);
 
     if (!xml.Load(EXPENSE_FILE_NAME)) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
@@ -67,7 +70,7 @@ void ExpenseFile::addExpense(Expense expense) {
     xml.AddElem("userId", expense.getUserId());
     xml.AddElem("expenseDate", formatedDate);
     xml.AddElem("expenseItem", expense.getExpenseItem());
-    xml.AddElem("expenseAmount", expense.getExpenseAmount());
+    xml.AddElem("expenseAmount", strExpenseAmount);
 
     xml.Save(EXPENSE_FILE_NAME);
 

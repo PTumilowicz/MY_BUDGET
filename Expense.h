@@ -29,7 +29,7 @@ public:
     int getUserId();
     int getExpenseDate();
     string getExpenseItem();
-    string getExpenseAmount();
+    double getExpenseAmount();
 
     void setExpenseId(int newExpenseId);
     void setUserId(int newUserId);

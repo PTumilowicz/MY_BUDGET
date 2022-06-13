@@ -38,13 +38,15 @@ void MyBudget::chooseOptionInLogMenu() {
                 addExpense();
                 break;
             case '3':
-
+                showBalance(beginOfCurrentMonth(), endOfCurrentMonth());
                 break;
             case '4':
-
+                //showBalance(beginOfLastMonth(), endOfLastMonth());
                 break;
             case '5':
-
+                //startDate = selectStartDate();
+                //endDate = selectEndDate();
+                //showBalance(startDate, endDate);
                 break;
             case '6':
                 changePassword();
@@ -116,4 +118,38 @@ void MyBudget::addExpense() {
     budgetManager->addExpense();
 }
 
+void MyBudget::showBalance(int startDate, int endDate) {
+    budgetManager->showBalance(startDate, endDate);
+}
 
+int MyBudget::beginOfCurrentMonth() {
+    int currentDate = AuxilaryMethods::currentDate();
+    int beginMonthDate = ((currentDate / 100) * 100) + 1;;
+
+    return beginMonthDate;
+}
+
+int MyBudget::endOfCurrentMonth() {
+    int currentDate = AuxilaryMethods::currentDate();
+    int yearNumber = currentDate / 10000, monthNumber = 0;
+    int endMonthDay = 0;
+
+    monthNumber = (currentDate - (yearNumber * 10000)) / 100;
+
+    switch(monthNumber) {
+    case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+        return endMonthDay = ((currentDate / 100) * 100) + 31;
+        break;
+    case 4: case 6: case 9: case 11:
+        return endMonthDay = ((currentDate / 100) * 100) + 30;
+        break;
+    case 2:
+        if ((yearNumber % 4 == 0 && yearNumber % 100 != 0) || yearNumber % 400 == 0) {
+            return endMonthDay = ((currentDate / 100) * 100) + 29;
+        }
+
+        return endMonthDay = ((currentDate / 100) * 100) + 28;
+        break;
+    }
+    return endMonthDay;
+}

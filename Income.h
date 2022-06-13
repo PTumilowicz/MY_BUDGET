@@ -29,7 +29,7 @@ public:
     int getUserId();
     int getIncomeDate();
     string getIncomeItem();
-    string getIncomeAmount();
+    double getIncomeAmount();
 
     void setIncomeId(int newIncomeId);
     void setUserId(int newUserId);

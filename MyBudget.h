@@ -27,6 +27,13 @@ class MyBudget {
     void addIncome();
     void addExpense();
 
+    void showBalance(int startDate, int endDate);
+
+    int beginOfCurrentMonth();
+    int endOfCurrentMonth();
+    int beginOfLastMonth();
+    int endOfLastMonth();
+
 public:
     MyBudget(string userFileName, string incomeFileName, string expenseFileName)
     : userManager(userFileName), INCOME_FILE_NAME(incomeFileName), EXPENSE_FILE_NAME(expenseFileName) {

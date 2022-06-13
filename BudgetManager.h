@@ -22,6 +22,9 @@ class BudgetManager {
     bool checkDateFormat(string date);
     bool checkCashAmountFormat(string cashAmount);
 
+    string convCashAmount(string cashAmount);
+    void showBalanceMenu(int startDate, int endDate);
+
 public:
     BudgetManager(string incomeFileName, string expenseFileName, int loggedUserId) :
         LOGGED_USER_ID(loggedUserId), incomeFile(incomeFileName), expenseFile(expenseFileName) {
@@ -31,4 +34,6 @@ public:
 
     void addIncome();
     void addExpense();
+
+    void showBalance(int startDate, int endDate);
 };

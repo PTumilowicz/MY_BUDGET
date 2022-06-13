@@ -42,7 +42,7 @@ Income BudgetManager::addNewIncomeData() {
 
     do {
         cout << "Enter income amount: ";
-        incomeAmount = AuxilaryMethods::convCashAmount(AuxilaryMethods::readLine());
+        incomeAmount = convCashAmount(AuxilaryMethods::readLine());
 
         if (!checkCashAmountFormat(incomeAmount)) {
             cout << "Wrong income amount format. Try again." << endl;
@@ -96,7 +96,7 @@ Expense BudgetManager::addNewExpenseData() {
 
     do {
         cout << "Enter expense amount: ";
-        expenseAmount = AuxilaryMethods::convCashAmount(AuxilaryMethods::readLine());
+        expenseAmount = convCashAmount(AuxilaryMethods::readLine());
 
         if (!checkCashAmountFormat(expenseAmount)) {
             cout << "Wrong expense amount format. Try again." << endl;
@@ -183,3 +183,58 @@ bool BudgetManager::checkCashAmountFormat(string cashAmount) {
     return true;
 }
 
+string BudgetManager::convCashAmount(string cashAmount) {
+    replace(cashAmount.begin(), cashAmount.end(), ',', '.');
+
+    return cashAmount;
+}
+
+void BudgetManager::showBalanceMenu(int startDate, int endDate) {
+    system("cls");
+
+    system("cls");
+    cout << ">>>> MyBudget - Balance <<<<\n" << endl;
+    cout << "Selected period: " << AuxilaryMethods::convIntDateToString(startDate) << " - " << AuxilaryMethods::convIntDateToString(endDate) << endl;
+}
+
+void BudgetManager::showBalance(int startDate, int endDate) {
+    int incomesVectorSize = incomes.size();
+    int expensesVectorSize = expenses.size();
+    double incomesSum = 0, expensesSum = 0;
+
+    sort(incomes.begin(), incomes.end(), [](Income& lhs, Income& rhs) {
+        return lhs.getIncomeDate() < rhs.getIncomeDate();
+    });
+
+    sort(expenses.begin(), expenses.end(), [](Expense& lhs, Expense& rhs) {
+        return lhs.getExpenseDate() < rhs.getExpenseDate();
+    });
+
+    showBalanceMenu(startDate, endDate);
+
+    cout << "\nINCOMES SORTED BY DATE \n" << endl;
+    for (int i = 0; i < incomesVectorSize; i++) {
+        if (incomes[i].getIncomeDate() >= startDate && incomes[i].getIncomeDate() <= endDate) {
+            cout << "Income date: " << AuxilaryMethods::convIntDateToString(incomes[i].getIncomeDate());
+            cout << "\tIncome item: " << incomes[i].getIncomeItem();
+            cout << "\tIncome amount: " << incomes[i].getIncomeAmount() << endl;
+            incomesSum += incomes[i].getIncomeAmount();
+        }
+    }
+
+    cout << "\nEXPENSES SORTED BY DATE \n" << endl;
+    for (int i = 0; i < expensesVectorSize; i++) {
+        if (expenses[i].getExpenseDate() >= startDate && expenses[i].getExpenseDate() <= endDate) {
+            cout << "Income date: " << AuxilaryMethods::convIntDateToString(expenses[i].getExpenseDate());
+            cout << "\tExpense item: " << expenses[i].getExpenseItem();
+            cout << "\tExpense amount: " << expenses[i].getExpenseAmount() << '\n' << endl;
+            expensesSum += expenses[i].getExpenseAmount();
+        }
+    }
+
+    cout << "Icomes sum in selected period: " << incomesSum << " zl." << endl;
+    cout << "Expenses sum in selected period: " << expensesSum << " zl." << endl;
+    cout << "\nCash balance in selected period: " << incomesSum - expensesSum << " zl\n" << endl;
+
+    system("pause");
+}

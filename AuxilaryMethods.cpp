@@ -57,6 +57,15 @@ int AuxilaryMethods::convStrToInt(string number) {
     return intNumber;
 }
 
+string AuxilaryMethods::convDoubleToString(double number) {
+    string strDouble = "";
+
+    stringstream stream;
+    stream << fixed << setprecision(2) << number;
+
+    return strDouble = stream.str();
+}
+
 int AuxilaryMethods::currentDate() {
     int year = 0, month = 0, day = 0;
     int currentDate = 0;
@@ -82,10 +91,4 @@ string AuxilaryMethods::convIntDateToString(int date) {
 int AuxilaryMethods::convStringDateToInt(string date) {
     int intDate = convStrToInt(date.substr(0,4) + date.substr(5,2) + date.substr(8,2));
     return intDate;
-}
-
-string AuxilaryMethods::convCashAmount(string cashAmount) {
-    replace(cashAmount.begin(), cashAmount.end(), ',', '.');
-
-    return cashAmount;
 }
