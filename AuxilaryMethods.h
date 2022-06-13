@@ -16,6 +16,9 @@ public:
     static string convIntToStr(int number);
     static int convStrToInt(string number);
     static int currentDate();
+    static string convIntDateToString(int date);
+    static int convStringDateToInt(string date);
+    static string convCashAmount(string cashAmount);
 };
 
 #endif

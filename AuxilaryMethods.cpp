@@ -72,3 +72,20 @@ int AuxilaryMethods::currentDate() {
 
     return currentDate;
 }
+
+string AuxilaryMethods::convIntDateToString(int date) {
+    string strDate = convIntToStr(date);
+    string formatedDate = strDate.substr(0,4) + '-' + strDate.substr(4,2) + '-' + strDate.substr(6,2);
+    return formatedDate;
+}
+
+int AuxilaryMethods::convStringDateToInt(string date) {
+    int intDate = convStrToInt(date.substr(0,4) + date.substr(5,2) + date.substr(8,2));
+    return intDate;
+}
+
+string AuxilaryMethods::convCashAmount(string cashAmount) {
+    replace(cashAmount.begin(), cashAmount.end(), ',', '.');
+
+    return cashAmount;
+}

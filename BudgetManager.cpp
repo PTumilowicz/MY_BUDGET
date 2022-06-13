@@ -21,15 +21,20 @@ Income BudgetManager::addNewIncomeData() {
 
     do {
         cout << "Enter income date (date format YYYY-MM-DD)" << endl;
+        cout << "Press 't' if you want to enter current date." << endl;
         cout << "Available range 2000-01-01 to end of current month: ";
         date = AuxilaryMethods::readLine();
 
+        if (date == "t" || date == "T") {
+            date = AuxilaryMethods::convIntDateToString(AuxilaryMethods::currentDate());
+        }
+
         if (!checkDateFormat(date)) {
-            cout << "Wrong data format or date out of range. Try again." << endl;
+            cout << "\nWrong data format or date out of range. Try again.\n" << endl;
         }
     } while(!checkDateFormat(date));
 
-    intDate = AuxilaryMethods::convStrToInt(date.substr(0,4) + date.substr(5,2) + date.substr(8,2));
+    intDate = AuxilaryMethods::convStringDateToInt(date);
     income.setIncomeDate(intDate);
 
     cout << "Enter income item: ";
@@ -37,16 +42,70 @@ Income BudgetManager::addNewIncomeData() {
 
     do {
         cout << "Enter income amount: ";
-        incomeAmount = AuxilaryMethods::readLine();
+        incomeAmount = AuxilaryMethods::convCashAmount(AuxilaryMethods::readLine());
 
-        if (!checkIncomeAmountFormat(incomeAmount)) {
+        if (!checkCashAmountFormat(incomeAmount)) {
             cout << "Wrong income amount format. Try again." << endl;
         }
-    } while (!checkIncomeAmountFormat(incomeAmount));
+    } while (!checkCashAmountFormat(incomeAmount));
 
     income.setIncomeAmount(incomeAmount);
 
     return income;
+}
+
+void BudgetManager::addExpense() {
+    Expense expense = addNewExpenseData();
+    expenses.push_back(expense);
+    expenseFile.addExpense(expense);
+}
+
+Expense BudgetManager::addNewExpenseData() {
+    int lastExpenseId = expenseFile.getLastExpenseId();
+    int intDate = 0;
+    string date = "", expenseAmount = "";
+    Expense expense;
+
+    expense.setExpenseId(++lastExpenseId);
+    expense.setUserId(LOGGED_USER_ID);
+
+    system("cls");
+    cout << ">>>> MyBudget - Add New Expense <<<<\n" << endl;
+    cout << "Enter expense details\n" << endl;
+
+    do {
+        cout << "Enter expense date (date format YYYY-MM-DD)" << endl;
+        cout << "Press 't' if you want to enter current date." << endl;
+        cout << "Available range 2000-01-01 to end of current month: ";
+        date = AuxilaryMethods::readLine();
+
+        if (date == "t" || date == "T") {
+            date = AuxilaryMethods::convIntDateToString(AuxilaryMethods::currentDate());
+        }
+
+        if (!checkDateFormat(date)) {
+            cout << "\nWrong data format or date out of range. Try again." << endl;
+        }
+    } while(!checkDateFormat(date));
+
+    intDate = AuxilaryMethods::convStringDateToInt(date);
+    expense.setExpenseDate(intDate);
+
+    cout << "Enter expense item: ";
+    expense.setExpenseItem(AuxilaryMethods::readLine());
+
+    do {
+        cout << "Enter expense amount: ";
+        expenseAmount = AuxilaryMethods::convCashAmount(AuxilaryMethods::readLine());
+
+        if (!checkCashAmountFormat(expenseAmount)) {
+            cout << "Wrong expense amount format. Try again." << endl;
+        }
+    } while (!checkCashAmountFormat(expenseAmount));
+
+    expense.setExpenseAmount(expenseAmount);
+
+    return expense;
 }
 
 bool BudgetManager::checkDateFormat(string date) {
@@ -106,23 +165,21 @@ bool BudgetManager::checkDateFormat(string date) {
     return true;
 }
 
-bool BudgetManager::checkIncomeAmountFormat(string incomeAmount) {
-    int stringLength = incomeAmount.length();
+bool BudgetManager::checkCashAmountFormat(string cashAmount) {
+    int stringLength = cashAmount.length();
     size_t counter = 0;
 
-    replace(incomeAmount.begin(), incomeAmount.end(), ',', '.');
-    counter = count(incomeAmount.begin(), incomeAmount.end(), '.');
+    counter = count(cashAmount.begin(), cashAmount.end(), '.');
 
     if (counter > 1) {
         return false;
     }
 
     for (int i = 0; i < stringLength; i++) {
-        if(!isdigit(incomeAmount[i]) && incomeAmount[i] != '.') {
+        if(!isdigit(cashAmount[i]) && cashAmount[i] != '.') {
             return false;
         }
     }
     return true;
 }
-
 

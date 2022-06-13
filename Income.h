@@ -4,7 +4,6 @@
 #include <iostream>
 #include <regex>
 #include <string>
-#include <iomanip>
 
 #include "AuxilaryMethods.h"
 

@@ -51,8 +51,7 @@ void IncomeFile::addIncome(Income income) {
     int intDate = income.getIncomeDate();
     string formatedDate = "", strDate = "";
 
-    strDate = AuxilaryMethods::convIntToStr(intDate);
-    formatedDate = strDate.substr(0,4) + '-' + strDate.substr(4,2) + '-' + strDate.substr(6,2);
+    formatedDate = AuxilaryMethods::convIntDateToString(intDate);
 
     if (!xml.Load(INCOME_FILE_NAME)) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
@@ -73,4 +72,7 @@ void IncomeFile::addIncome(Income income) {
     xml.Save(INCOME_FILE_NAME);
 
     lastIncomeId++;
+
+    cout << "Income added correctly." << endl;
+    system("pause");
 }

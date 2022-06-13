@@ -25,6 +25,7 @@ class MyBudget {
     void showMainMenu();
 
     void addIncome();
+    void addExpense();
 
 public:
     MyBudget(string userFileName, string incomeFileName, string expenseFileName)

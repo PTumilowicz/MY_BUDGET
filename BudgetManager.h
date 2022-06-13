@@ -18,14 +18,17 @@ class BudgetManager {
     ExpenseFile expenseFile;
 
     Income addNewIncomeData();
+    Expense addNewExpenseData();
     bool checkDateFormat(string date);
-    bool checkIncomeAmountFormat(string incomeAmount);
+    bool checkCashAmountFormat(string cashAmount);
 
 public:
     BudgetManager(string incomeFileName, string expenseFileName, int loggedUserId) :
-        LOGGED_USER_ID(loggedUserId), incomeFile(incomeFileName) {
+        LOGGED_USER_ID(loggedUserId), incomeFile(incomeFileName), expenseFile(expenseFileName) {
         incomes = incomeFile.loadIncomeFromFile(LOGGED_USER_ID);
+        expenses = expenseFile.loadExpenseFromFile(LOGGED_USER_ID);
     }
 
     void addIncome();
+    void addExpense();
 };

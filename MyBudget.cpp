@@ -35,7 +35,7 @@ void MyBudget::chooseOptionInLogMenu() {
                 addIncome();
                 break;
             case '2':
-
+                addExpense();
                 break;
             case '3':
 
@@ -110,6 +110,10 @@ void MyBudget::changePassword() {
 
 void MyBudget::addIncome() {
     budgetManager->addIncome();
+}
+
+void MyBudget::addExpense() {
+    budgetManager->addExpense();
 }
 
 
