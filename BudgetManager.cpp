@@ -26,7 +26,7 @@ Income BudgetManager::addNewIncomeData() {
         date = AuxilaryMethods::readLine();
 
         if (date == "t" || date == "T") {
-            date = AuxilaryMethods::convIntDateToString(AuxilaryMethods::currentDate());
+            date = DateMethods::convIntDateToString(DateMethods::currentDate());
         }
 
         if (!checkDateFormat(date)) {
@@ -34,7 +34,7 @@ Income BudgetManager::addNewIncomeData() {
         }
     } while(!checkDateFormat(date));
 
-    intDate = AuxilaryMethods::convStringDateToInt(date);
+    intDate = DateMethods::convStringDateToInt(date);
     income.setIncomeDate(intDate);
 
     cout << "Enter income item: ";
@@ -80,7 +80,7 @@ Expense BudgetManager::addNewExpenseData() {
         date = AuxilaryMethods::readLine();
 
         if (date == "t" || date == "T") {
-            date = AuxilaryMethods::convIntDateToString(AuxilaryMethods::currentDate());
+            date = DateMethods::convIntDateToString(DateMethods::currentDate());
         }
 
         if (!checkDateFormat(date)) {
@@ -88,7 +88,7 @@ Expense BudgetManager::addNewExpenseData() {
         }
     } while(!checkDateFormat(date));
 
-    intDate = AuxilaryMethods::convStringDateToInt(date);
+    intDate = DateMethods::convStringDateToInt(date);
     expense.setExpenseDate(intDate);
 
     cout << "Enter expense item: ";
@@ -109,7 +109,7 @@ Expense BudgetManager::addNewExpenseData() {
 }
 
 bool BudgetManager::checkDateFormat(string date) {
-    int currentDate = AuxilaryMethods::currentDate();
+    int currentDate = DateMethods::currentDate();
     int currentYear =  currentDate / 10000;
     int currentMonth = (currentDate - currentYear * 10000) / 100;
     //int currentDay = currentDate % 100;
@@ -193,12 +193,12 @@ void BudgetManager::showBalanceMenu(int startDate, int endDate) {
     system("cls");
 
     cout << ">>>> MyBudget - Balance <<<<\n" << endl;
-    cout << "Selected period: " << AuxilaryMethods::convIntDateToString(startDate) << " - " << AuxilaryMethods::convIntDateToString(endDate) << endl;
+    cout << "Selected period: " << DateMethods::convIntDateToString(startDate) << " - " << DateMethods::convIntDateToString(endDate) << endl;
 }
 
 void BudgetManager::showBalance(int startDate, int endDate) {
-    int incomesVectorSize = incomes.size();
-    int expensesVectorSize = expenses.size();
+    int incomesVectorSize = incomes.size(), expensesVectorSize = expenses.size();
+    int incomeCount = 0, expenseCount = 0;
     double incomesSum = 0, expensesSum = 0;
 
     sort(incomes.begin(), incomes.end(), [](Income& lhs, Income& rhs) {
@@ -211,24 +211,37 @@ void BudgetManager::showBalance(int startDate, int endDate) {
 
     showBalanceMenu(startDate, endDate);
 
+    cout << fixed << showpoint;
+    cout << setprecision(2);
+
     cout << "\nINCOMES SORTED BY DATE" << endl;
     for (int i = 0; i < incomesVectorSize; i++) {
         if (incomes[i].getIncomeDate() >= startDate && incomes[i].getIncomeDate() <= endDate) {
-            cout << "\nIncome date: " << AuxilaryMethods::convIntDateToString(incomes[i].getIncomeDate()) << endl;
+            cout << "\nIncome date: " << DateMethods::convIntDateToString(incomes[i].getIncomeDate()) << endl;
             cout << "Income item: " << incomes[i].getIncomeItem() << endl;
             cout << "Income amount: " << incomes[i].getIncomeAmount() << endl;
             incomesSum += incomes[i].getIncomeAmount();
+            incomeCount++;
         }
+    }
+
+    if (incomeCount == 0) {
+        cout << "\nNo income recorded in selected date range :(" << endl;
     }
 
     cout << "\nEXPENSES SORTED BY DATE" << endl;
     for (int i = 0; i < expensesVectorSize; i++) {
         if (expenses[i].getExpenseDate() >= startDate && expenses[i].getExpenseDate() <= endDate) {
-            cout << "\nExpense date: " << AuxilaryMethods::convIntDateToString(expenses[i].getExpenseDate()) << endl;
+            cout << "\nExpense date: " << DateMethods::convIntDateToString(expenses[i].getExpenseDate()) << endl;
             cout << "Expense item: " << expenses[i].getExpenseItem() << endl;
             cout << "Expense amount: " << expenses[i].getExpenseAmount() << endl;
             expensesSum += expenses[i].getExpenseAmount();
+            expenseCount++;
         }
+    }
+
+    if (incomeCount == 0) {
+        cout << "\nNo expense recorded in selected date range :)" << endl;
     }
 
     cout << "\nIcomes sum in selected period: " << incomesSum << " zl." << endl;
@@ -239,7 +252,7 @@ void BudgetManager::showBalance(int startDate, int endDate) {
 }
 
 void BudgetManager::showCurrentMonthBalance() {
-    showBalance(beginOfMonth(AuxilaryMethods::currentDate()), endOfMonth(AuxilaryMethods::currentDate()));
+    showBalance(beginOfMonth(DateMethods::currentDate()), endOfMonth(DateMethods::currentDate()));
 }
 
 void BudgetManager::showLastMonthBalance() {
@@ -261,7 +274,7 @@ void BudgetManager::showSelectedPeriodBalance() {
         startDate = AuxilaryMethods::readLine();
 
         if (startDate == "t" || startDate == "T") {
-            startDate = AuxilaryMethods::convIntDateToString(AuxilaryMethods::currentDate());
+            startDate = DateMethods::convIntDateToString(DateMethods::currentDate());
         }
 
         if (!checkDateFormat(startDate)) {
@@ -276,7 +289,7 @@ void BudgetManager::showSelectedPeriodBalance() {
         endDate = AuxilaryMethods::readLine();
 
         if (endDate == "t" || endDate == "T") {
-            endDate = AuxilaryMethods::convIntDateToString(AuxilaryMethods::currentDate());
+            endDate = DateMethods::convIntDateToString(DateMethods::currentDate());
         }
 
         if (!checkDateFormat(endDate)) {
@@ -284,11 +297,12 @@ void BudgetManager::showSelectedPeriodBalance() {
         }
     } while(!checkDateFormat(endDate));
 
-    intStartDate = AuxilaryMethods::convStringDateToInt(startDate);
-    intEndDate = AuxilaryMethods::convStringDateToInt(endDate);
+    intStartDate = DateMethods::convStringDateToInt(startDate);
+    intEndDate = DateMethods::convStringDateToInt(endDate);
 
     if (intStartDate > intEndDate) {
         cout << "\nStart date later than end date. Try again.\n" << endl;
+        system("pause");
     } else {
         showBalance(intStartDate, intEndDate);
     }
@@ -323,7 +337,7 @@ int BudgetManager::endOfMonth(int date) {
 }
 
 int BudgetManager::beginOfLastMonth() {
-    int currentDate = AuxilaryMethods::currentDate();
+    int currentDate = DateMethods::currentDate();
     int yearNumber = currentDate / 10000;
     int currentMonthNumber = (currentDate - (yearNumber * 10000)) / 100;
 

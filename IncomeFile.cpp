@@ -52,7 +52,7 @@ void IncomeFile::addIncome(Income income) {
     double dblIncomeAmount = 0;
     string formatedDate = "", strIncomeAmount = "";
 
-    formatedDate = AuxilaryMethods::convIntDateToString(intDate);
+    formatedDate = DateMethods::convIntDateToString(intDate);
     dblIncomeAmount = income.getIncomeAmount();
     strIncomeAmount = AuxilaryMethods::convDoubleToString(dblIncomeAmount);
 

@@ -52,7 +52,7 @@ void ExpenseFile::addExpense(Expense expense) {
     double dblExpenseAmount = 0;
     string formatedDate = "", strExpenseAmount = "";
 
-    formatedDate = AuxilaryMethods::convIntDateToString(intDate);
+    formatedDate = DateMethods::convIntDateToString(intDate);
     dblExpenseAmount = expense.getExpenseAmount();
     strExpenseAmount = AuxilaryMethods::convDoubleToString(dblExpenseAmount);
 
